@@ -6,9 +6,12 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
   end
 
   def create
+    post = Post.create!(post_params)
+    redirect_to post
   end
 
   def edit
@@ -19,4 +22,7 @@ class PostsController < ApplicationController
 
   def destroy
   end
+
+  def post_params
+    params.require(:post).permit(:tilte, :content)
 end
